@@ -2,5 +2,15 @@
 
 Given the two integers m and n, return the number of possible unique paths that the robot can take to reach the bottom-right corner.
 
-The test cases are generated so that the answer will be less than or equal to 2 * 109. """
+The test cases are generated so that the answer will be less than or equal to 2 * 109. 
+Constraints:
 
+1 <= m, n <= 100"""
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        dp = [[1] * n for _ in range(m)]
+        for i in range(1, m):
+            for j in range(1, n):
+                dp[i][j] = dp[i-1][j] + dp[i][j-1]
+        return dp[m-1][n-1]
